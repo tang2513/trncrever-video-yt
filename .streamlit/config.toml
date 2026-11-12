@@ -1,0 +1,36 @@
+# Configuração do Streamlit para o Transcritor de Vídeos Longos.
+
+[server]
+# Os arquivos são lidos diretamente do disco pelo caminho local; o upload do
+# navegador não é usado para arquivos grandes. Limite baixo evita abuso de RAM.
+maxUploadSize = 200
+# Desativa a observação de arquivos: o worker escreve muitos arquivos em temp/
+# e logs/, e recarregamentos automáticos da interface não são desejados.
+fileWatcherType = "none"
+runOnSave = false
+headless = false
+# Somente acesso local.
+address = "localhost"
+port = 8501
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+[runner]
+fastReruns = true
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = true
+
+[logger]
+level = "info"
+
+[theme]
+base = "dark"
+primaryColor = "#7C5CFF"
+backgroundColor = "#0F1117"
+secondaryBackgroundColor = "#1A1D29"
+textColor = "#E6E8EF"
+font = "sans serif"

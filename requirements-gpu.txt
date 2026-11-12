@@ -1,0 +1,17 @@
+# =============================================================================
+# Dependências OPCIONAIS para usar GPU NVIDIA (CUDA) no Windows
+# =============================================================================
+# Somente para placas NVIDIA compatíveis com CUDA 12 e driver atualizado.
+# Placas AMD e Intel NÃO são suportadas pelo CTranslate2 no Windows; nesses
+# casos o aplicativo usa a CPU automaticamente (modo int8).
+#
+# Instalação (depois do requirements.txt):
+#   python -m pip install -r requirements-gpu.txt
+#
+# Esses pacotes trazem as DLLs do cuBLAS e do cuDNN 9 exigidas pelo
+# ctranslate2 4.5.x. O módulo src/hardware.py registra automaticamente as
+# pastas dessas DLLs (os.add_dll_directory) antes de carregar o modelo.
+# -----------------------------------------------------------------------------
+-r requirements.txt
+nvidia-cublas-cu12>=12.4,<13
+nvidia-cudnn-cu12>=9.1,<10

@@ -1,0 +1,12 @@
+# Específico de cada computador (não sincronizar)
+venv/
+.venv/
+models/
+temp/
+logs/
+transcricoes/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
+*.zip

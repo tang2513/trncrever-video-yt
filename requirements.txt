@@ -1,0 +1,42 @@
+# =============================================================================
+# Transcritor de Vídeos Longos — dependências (Python 3.11, Windows 10/11)
+# =============================================================================
+# Instalação:
+#   python -m pip install --upgrade pip
+#   python -m pip install -r requirements.txt
+#
+# FFmpeg NÃO é instalado pelo pip: instale separadamente e adicione ao PATH
+# (veja o README). O aplicativo verifica automaticamente se ele está acessível.
+# -----------------------------------------------------------------------------
+
+# Interface. A versão 1.41.x oferece st.fragment(run_every=...), usado para ler
+# o checkpoint JSON periodicamente sem loops infinitos na interface.
+streamlit==1.41.1
+
+# Motor de transcrição (CTranslate2 por baixo). faster-whisper 1.1.1 exige
+# ctranslate2>=4,<5. Validado com Python 3.14 + ctranslate2 4.9.0 (o 4.5.0 não tem pacote para 3.14).
+# Na GPU NVIDIA o ctranslate2 4.x usa CUDA 12 + cuDNN 9.
+faster-whisper==1.1.1
+# PyAV: a versão 19 removeu o argumento "metadata_errors" que o faster-whisper usa ao abrir o áudio
+# (erro "open() got an unexpected keyword argument"). Validado com av 18.1.0 no Python 3.14.
+av>=15,<19
+ctranslate2>=4.6.1,<5
+
+# Download de áudio/legendas do YouTube e da Twitch.
+# ATENÇÃO: o YouTube muda com frequência; mantenha o yt-dlp atualizado com
+#   python -m pip install -U yt-dlp
+# Por isso aqui é fixada apenas a versão mínima, não a exata.
+yt-dlp>=2025.1.15
+
+# Monitoramento de processos (PID + horário de criação), RAM e encerramento
+# da árvore de processos filhos (FFmpeg / yt-dlp).
+psutil==6.1.1
+
+# Geração/leitura de legendas SRT. O WebVTT é lido e escrito por código próprio
+# em src/subtitles.py, pois as legendas automáticas do YouTube usam um formato
+# "rolante" que exige tratamento específico (evita dependência redundante).
+srt==3.5.3
+
+# -----------------------------------------------------------------------------
+# GPU NVIDIA (opcional): veja requirements-gpu.txt
+# -----------------------------------------------------------------------------
